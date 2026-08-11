@@ -20,11 +20,17 @@ pipeline {
                 sh 'mvn test'
             }
         }
+
+        stage('Run Application') {
+            steps {
+                sh 'java -cp target/classes Calculator'
+            }
+        }
     }
 
     post {
         success {
-            echo 'Build completed successfully!'
+            echo 'Build and application execution completed successfully!'
         }
 
         failure {
